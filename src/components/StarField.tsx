@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-
-const stars = Array.from({ length: 112 }, (_, index) => ({
+const stars = Array.from({ length: 84 }, (_, index) => ({
   id: index,
   left: `${(index * 37 + index * index * 11 + 11) % 100}%`,
   top: `${(index * 61 + index * index * 17 + 7) % 100}%`,
@@ -29,12 +27,12 @@ function createFlyByStars(seed: number, count: number, spread: number): string {
 }
 
 const flyByLayers = [
-  createFlyByStars(17, 130, 920),
-  createFlyByStars(41, 105, 780),
-  createFlyByStars(73, 82, 650),
+  createFlyByStars(17, 90, 920),
+  createFlyByStars(41, 72, 780),
+  createFlyByStars(73, 56, 650),
 ];
 
-const fallingStars = Array.from({ length: 34 }, (_, index) => ({
+const fallingStars = Array.from({ length: 22 }, (_, index) => ({
   id: index,
   left: `${(index * 47 + index * index * 9) % 104 - 2}%`,
   delay: `${(index % 17) * -0.7}s`,
@@ -44,21 +42,13 @@ const fallingStars = Array.from({ length: 34 }, (_, index) => ({
 }));
 
 export function StarField() {
-  const [pointer, setPointer] = useState({ x: 0, y: 0 });
-  useEffect(() => {
-    const onPointerMove = (event: PointerEvent) => setPointer({ x: (event.clientX / window.innerWidth - 0.5) * 2, y: (event.clientY / window.innerHeight - 0.5) * 2 });
-    const onPointerLeave = () => setPointer({ x: 0, y: 0 });
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    window.addEventListener("pointerleave", onPointerLeave);
-    return () => { window.removeEventListener("pointermove", onPointerMove); window.removeEventListener("pointerleave", onPointerLeave); };
-  }, []);
-  const fieldStyle = { "--pointer-x": `${pointer.x * 34}px`, "--pointer-y": `${pointer.y * 24}px` } as React.CSSProperties;
-  return <div className="star-field" style={fieldStyle} aria-hidden="true">
+  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches;
+  return <div className="star-field" aria-hidden="true">
     <div className="fly-by-layer fly-layer-one" style={{ boxShadow: flyByLayers[0] }} />
     <div className="fly-by-layer fly-layer-two" style={{ boxShadow: flyByLayers[1] }} />
     <div className="fly-by-layer fly-layer-three" style={{ boxShadow: flyByLayers[2] }} />
-    <div className="falling-stars">{fallingStars.map((star) => <span key={star.id} className="falling-star" style={{ left: star.left, width: star.size, height: star.size, "--fall-delay": star.delay, "--fall-duration": star.duration, "--fall-drift": star.drift } as React.CSSProperties} />)}</div>
-    {stars.map((star) => <i key={star.id} className={star.bright ? "bright-star" : ""} style={{ left: star.left, top: star.top, width: star.size, height: star.size, animationDelay: star.delay, "--drift-x": star.driftX, "--drift-y": star.driftY, "--drift-duration": star.duration, "--twinkle-duration": star.twinkle } as React.CSSProperties} />)}
+    <div className="falling-stars">{fallingStars.slice(0, isMobile ? 10 : fallingStars.length).map((star) => <span key={star.id} className="falling-star" style={{ left: star.left, width: star.size, height: star.size, "--fall-delay": star.delay, "--fall-duration": star.duration, "--fall-drift": star.drift } as React.CSSProperties} />)}</div>
+    {stars.slice(0, isMobile ? 42 : stars.length).map((star) => <i key={star.id} className={star.bright ? "bright-star" : ""} style={{ left: star.left, top: star.top, width: star.size, height: star.size, animationDelay: star.delay, "--drift-x": star.driftX, "--drift-y": star.driftY, "--drift-duration": star.duration, "--twinkle-duration": star.twinkle } as React.CSSProperties} />)}
     <div className="shooting-stars"><span /><span /><span /><span /><span /></div>
   </div>;
 }

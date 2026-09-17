@@ -12,14 +12,14 @@ button { font: inherit; }
 .app-shell::before { content: ""; position: absolute; inset: 0; z-index: -2; background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--zodiac-secondary) 11%, transparent), transparent 48%), radial-gradient(ellipse at 10% 15%, rgba(245, 156, 202, .08), transparent 35%); pointer-events: none; }
 .star-field, .nebula, .zodiac-scene, .cake-scene, .intro-screen, .wish-text, .birthday-title, .envelope-wrap, .card-wrap, .card-backdrop, .scene-label { position: absolute; }
 .star-field { inset: 0; z-index: 1; pointer-events: none; overflow: hidden; perspective: 600px; -webkit-perspective: 600px; }
-.fly-by-layer { position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: #fff; transform-style: preserve-3d; opacity: .5; translate: calc(var(--pointer-x) * var(--parallax-factor)) calc(var(--pointer-y) * var(--parallax-factor)); transition: translate .45s ease-out; }
+.fly-by-layer { position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: #fff; transform-style: preserve-3d; opacity: .5; }
 .fly-layer-one { --parallax-factor: .85; animation: sf-fly-by-1 5s linear infinite; }
 .fly-layer-two { --parallax-factor: .5; animation: sf-fly-by-2 5s linear infinite; }
 .fly-layer-three { --parallax-factor: .25; animation: sf-fly-by-3 5s linear infinite; }
 .falling-stars { position: absolute; inset: 0; overflow: hidden; }
-.falling-star { position: absolute; top: -8%; display: block; border-radius: 50%; background: #fff; opacity: .24; --parallax-factor: .52; translate: calc(var(--pointer-x) * var(--parallax-factor)) calc(var(--pointer-y) * var(--parallax-factor)); transition: translate .4s ease-out; box-shadow: 0 0 5px #fff, 0 0 12px var(--zodiac-primary), 0 0 22px color-mix(in srgb, var(--zodiac-secondary) 78%, transparent); animation: star-fall var(--fall-duration) linear var(--fall-delay) infinite; }
+.falling-star { position: absolute; top: -8%; display: block; border-radius: 50%; background: #fff; opacity: .24; box-shadow: 0 0 5px #fff, 0 0 12px var(--zodiac-primary), 0 0 22px color-mix(in srgb, var(--zodiac-secondary) 78%, transparent); animation: star-fall var(--fall-duration) linear var(--fall-delay) infinite; }
 .falling-star::after { content: ""; position: absolute; left: 50%; top: 50%; width: 280%; height: 280%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--zodiac-secondary) 70%, transparent), transparent 68%); animation: falling-glow 2.4s ease-in-out var(--fall-delay) infinite; }
-.star-field i { position: absolute; border-radius: 50%; opacity: .46; --parallax-factor: .34; translate: calc(var(--pointer-x) * var(--parallax-factor)) calc(var(--pointer-y) * var(--parallax-factor)); transition: translate .5s ease-out; animation: star-drift var(--drift-duration) ease-in-out var(--delay) infinite alternate; }
+.star-field i { position: absolute; border-radius: 50%; opacity: .46; animation: star-drift var(--drift-duration) ease-in-out var(--delay) infinite alternate; }
 .star-field i::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: #fff; box-shadow: 0 0 7px rgba(255,255,255,.55); animation: twinkle var(--twinkle-duration) ease-in-out var(--delay) infinite; }
 .star-field i.bright-star::before { content: ""; position: absolute; width: 240%; height: 240%; left: -70%; top: -70%; opacity: .75; background: linear-gradient(90deg, transparent 44%, rgba(255,255,255,.9) 50%, transparent 56%), linear-gradient(0deg, transparent 44%, rgba(255,255,255,.9) 50%, transparent 56%); animation: star-ray 3.1s ease-in-out infinite; }
 .star-field i.bright-star::after { box-shadow: 0 0 5px #fff, 0 0 14px var(--zodiac-primary), 0 0 25px color-mix(in srgb, var(--zodiac-secondary) 70%, transparent); }
@@ -144,3 +144,12 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
 .birthday-card { overflow-x: hidden; scrollbar-width: none; }
 .birthday-card::-webkit-scrollbar { width: 0; height: 0; display: none; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+@media (max-width: 640px) {
+  .fly-by-layer { display: none; }
+  .star-field i.bright-star::before { display: none; }
+  .falling-star::after { display: none; }
+  .shooting-stars span:nth-child(n+3) { display: none; }
+  .nebula { filter: blur(46px); animation: none; opacity: .13; }
+  .repo-cake-svg { filter: none; }
+  .letter-backdrop { backdrop-filter: none; }
+}
