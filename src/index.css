@@ -170,6 +170,7 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
 .envelope-cosmo.is-opening { display: none; }
 .card-wrap { will-change: transform, opacity; }
 .card-glow { inset: -4%; filter: none; opacity: .7; background: radial-gradient(circle, color-mix(in srgb, var(--zodiac-primary) 20%, transparent), transparent 72%); }
+.letter-backdrop { background: radial-gradient(circle at 50% 50%, rgba(38,23,51,.22) 0 150px, rgba(5,3,14,.92) 330px), #05030e; }
 
 /* Keep the envelope-to-letter handoff responsive without a heavy animated layer. */
 .envelope-flap { transition-duration: .45s; }
