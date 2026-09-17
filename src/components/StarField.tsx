@@ -1,4 +1,4 @@
-const stars = Array.from({ length: 84 }, (_, index) => ({
+const stars = Array.from({ length: 64 }, (_, index) => ({
   id: index,
   left: `${(index * 37 + index * index * 11 + 11) % 100}%`,
   top: `${(index * 61 + index * index * 17 + 7) % 100}%`,
@@ -11,28 +11,7 @@ const stars = Array.from({ length: 84 }, (_, index) => ({
   bright: index % 13 === 0 || index % 17 === 0 || index % 29 === 0,
 }));
 
-function createFlyByStars(seed: number, count: number, spread: number): string {
-  let state = seed;
-  const random = () => {
-    state = (state * 9301 + 49297) % 233280;
-    return state / 233280;
-  };
-  return Array.from({ length: count }, () => {
-    const x = Math.round((random() * 2 - 1) * spread);
-    const y = Math.round((random() * 2 - 1) * spread);
-    const alpha = (0.34 + random() * 0.66).toFixed(2);
-    const color = random() > 0.84 ? "#ffe9f5" : random() > 0.55 ? "#dceeff" : "#ffffff";
-    return `${x}px ${y}px 0 0 ${color}${Math.round(Number(alpha) * 255).toString(16).padStart(2, "0")}`;
-  }).join(", ");
-}
-
-const flyByLayers = [
-  createFlyByStars(17, 90, 920),
-  createFlyByStars(41, 72, 780),
-  createFlyByStars(73, 56, 650),
-];
-
-const fallingStars = Array.from({ length: 22 }, (_, index) => ({
+const fallingStars = Array.from({ length: 14 }, (_, index) => ({
   id: index,
   left: `${(index * 47 + index * index * 9) % 104 - 2}%`,
   delay: `${(index % 17) * -0.7}s`,
@@ -44,11 +23,8 @@ const fallingStars = Array.from({ length: 22 }, (_, index) => ({
 export function StarField() {
   const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches;
   return <div className="star-field" aria-hidden="true">
-    <div className="fly-by-layer fly-layer-one" style={{ boxShadow: flyByLayers[0] }} />
-    <div className="fly-by-layer fly-layer-two" style={{ boxShadow: flyByLayers[1] }} />
-    <div className="fly-by-layer fly-layer-three" style={{ boxShadow: flyByLayers[2] }} />
-    <div className="falling-stars">{fallingStars.slice(0, isMobile ? 10 : fallingStars.length).map((star) => <span key={star.id} className="falling-star" style={{ left: star.left, width: star.size, height: star.size, "--fall-delay": star.delay, "--fall-duration": star.duration, "--fall-drift": star.drift } as React.CSSProperties} />)}</div>
-    {stars.slice(0, isMobile ? 42 : stars.length).map((star) => <i key={star.id} className={star.bright ? "bright-star" : ""} style={{ left: star.left, top: star.top, width: star.size, height: star.size, animationDelay: star.delay, "--drift-x": star.driftX, "--drift-y": star.driftY, "--drift-duration": star.duration, "--twinkle-duration": star.twinkle } as React.CSSProperties} />)}
+    <div className="falling-stars">{fallingStars.slice(0, isMobile ? 6 : fallingStars.length).map((star) => <span key={star.id} className="falling-star" style={{ left: star.left, width: star.size, height: star.size, "--fall-delay": star.delay, "--fall-duration": star.duration, "--fall-drift": star.drift } as React.CSSProperties} />)}</div>
+    {stars.slice(0, isMobile ? 24 : stars.length).map((star) => <i key={star.id} className={star.bright ? "bright-star" : ""} style={{ left: star.left, top: star.top, width: star.size, height: star.size, animationDelay: star.delay, "--drift-x": star.driftX, "--drift-y": star.driftY, "--drift-duration": star.duration, "--twinkle-duration": star.twinkle } as React.CSSProperties} />)}
     <div className="shooting-stars"><span /><span /><span /><span /><span /></div>
   </div>;
 }

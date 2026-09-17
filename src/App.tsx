@@ -45,20 +45,20 @@ function App() {
   const blowCandle = useCallback(() => {
     setBlown(true);
     const compact = window.matchMedia("(max-width: 640px)").matches;
-    confetti({ particleCount: compact ? 24 : 46, spread: compact ? 52 : 62, ticks: compact ? 82 : 118, gravity: 1.15, scalar: compact ? .82 : .92, disableForReducedMotion: true, origin: { x: 0.5, y: 0.56 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] });
+    confetti({ particleCount: compact ? 8 : 38, spread: compact ? 48 : 60, ticks: compact ? 42 : 98, gravity: 1.2, scalar: compact ? .62 : .88, disableForReducedMotion: true, origin: { x: 0.5, y: 0.56 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] });
   }, [sign]);
   const toggleMusic = useCallback(() => setMusicOn((value) => !value), []);
 
   useEffect(() => {
     if (phase !== "confetti") return;
     const compact = window.matchMedia("(max-width: 640px)").matches;
-    const options = { ticks: compact ? 86 : 122, gravity: 1.15, scalar: compact ? .78 : .9, disableForReducedMotion: true, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] };
+    const options = { ticks: compact ? 42 : 98, gravity: 1.2, scalar: compact ? .62 : .86, disableForReducedMotion: true, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] };
     if (compact) {
-      void confetti({ ...options, particleCount: 38, spread: 68, origin: { x: 0.5, y: 0.62 } });
+      void confetti({ ...options, particleCount: 12, spread: 60, origin: { x: 0.5, y: 0.62 } });
       return;
     }
-    void confetti({ ...options, particleCount: 70, angle: 62, spread: 58, origin: { x: 0.08, y: 0.66 } });
-    void confetti({ ...options, particleCount: 70, angle: 118, spread: 58, origin: { x: 0.92, y: 0.66 } });
+    void confetti({ ...options, particleCount: 55, angle: 62, spread: 56, origin: { x: 0.08, y: 0.66 } });
+    void confetti({ ...options, particleCount: 55, angle: 118, spread: 56, origin: { x: 0.92, y: 0.66 } });
   }, [phase, sign]);
 
   const letterOpen = ["card-open", "card-message", "complete"].includes(phase);
