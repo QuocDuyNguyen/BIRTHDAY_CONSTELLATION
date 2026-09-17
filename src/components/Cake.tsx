@@ -25,7 +25,7 @@ export function Cake({ phase, theme, blown }: CakeProps) {
   const svgStyle = { "--repo-cake-body": body, "--repo-cake-dark": bodyDark, "--repo-cake-icing": icing, "--repo-cake-accent": accent } as CSSProperties;
   const cardIsOpen = ["card-open", "card-message", "complete"].includes(phase);
 
-  return <motion.div className="cake-scene" animate={{ opacity: cardIsOpen ? 0.18 : 1, scale: cardIsOpen ? 0.7 : 1, filter: cardIsOpen ? "blur(8px)" : "blur(0px)" }} transition={{ duration: 1.1 }}>
+  return <motion.div className={`cake-scene ${cardIsOpen ? "is-background" : ""}`} animate={{ opacity: cardIsOpen ? 0.18 : 1, scale: cardIsOpen ? 0.94 : 1 }} transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}>
     <div className="cake-halo" />
     <svg className="repo-cake-svg" viewBox="0 0 240 370" role="img" aria-label="Bánh sinh nhật đang phát sáng" style={svgStyle}>
       <defs>

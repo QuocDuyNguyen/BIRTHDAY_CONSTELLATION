@@ -154,6 +154,18 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
   .letter-backdrop { backdrop-filter: none; }
 }
 
+/* Keep the focus transition on the compositor; avoid expensive blur/filter repaints. */
+.scene-in-background { filter: none; transition: opacity .36s ease; }
+.cake-scene.is-background .cake-halo { display: none; }
+.cake-scene.is-background .repo-cake-svg,
+.cake-scene.is-background .cake-layer-motion,
+.cake-scene.is-background .cake-decoration-motion,
+.cake-scene.is-background .cake-candle-motion,
+.cake-scene.is-background .candle-flame * { filter: none; }
+.balloon-stage.is-hidden .balloon-shell,
+.balloon-stage.is-paused .balloon-shell { animation-play-state: paused; }
+.envelope.is-open { animation: none; }
+
 /* Keep the envelope-to-letter handoff responsive without a heavy animated layer. */
 .envelope-flap { transition-duration: .45s; }
 .envelope-cosmo.is-opening { opacity: .35; animation: none; }

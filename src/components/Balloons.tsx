@@ -21,8 +21,8 @@ const balloons: BalloonSpec[] = [
   { color: "cream", left: "61%", top: "8%", size: 44, delay: 0.76, duration: 1.22, rotate: -3 },
 ];
 
-export function Balloons({ visible }: { visible: boolean }) {
-  return <div className="balloon-stage" aria-hidden="true">
+export function Balloons({ visible, paused = false }: { visible: boolean; paused?: boolean }) {
+  return <div className={`balloon-stage ${visible ? "is-visible" : "is-hidden"} ${paused ? "is-paused" : ""}`} aria-hidden="true">
     {balloons.map((balloon, index) => {
       const style = {
         left: balloon.left,
