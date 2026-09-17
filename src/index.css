@@ -167,6 +167,9 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
 .envelope.is-open { animation: none; }
 .envelope { width: min(64vw, 260px); height: 172px; }
 @media (max-width: 640px) { .envelope { width: 230px; height: 150px; } }
+.envelope-cosmo.is-opening { display: none; }
+.card-wrap { will-change: transform, opacity; }
+.card-glow { inset: -4%; filter: none; opacity: .7; background: radial-gradient(circle, color-mix(in srgb, var(--zodiac-primary) 20%, transparent), transparent 72%); }
 
 /* Keep the envelope-to-letter handoff responsive without a heavy animated layer. */
 .envelope-flap { transition-duration: .45s; }
