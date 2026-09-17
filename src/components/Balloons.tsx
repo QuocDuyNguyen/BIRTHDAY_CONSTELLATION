@@ -12,11 +12,11 @@ interface BalloonSpec {
 }
 
 const balloons: BalloonSpec[] = [
-  { color: "lilac", left: "3%", top: "2%", size: 70, delay: 0.05, duration: 1.05, rotate: -7 },
+  { color: "lilac", left: "3%", top: "12%", size: 70, delay: 0.05, duration: 1.05, rotate: -7 },
   { color: "blush", left: "10%", top: "56%", size: 62, delay: 0.28, duration: 1.2, rotate: 5 },
   { color: "cream", left: "18%", top: "34%", size: 54, delay: 0.48, duration: 1.1, rotate: -4 },
   { color: "berry", left: "73%", top: "40%", size: 68, delay: 0.18, duration: 1.16, rotate: 6 },
-  { color: "lilac", left: "84%", top: "23%", size: 58, delay: 0.38, duration: 1.08, rotate: -5 },
+  { color: "lilac", left: "84%", top: "16%", size: 58, delay: 0.38, duration: 1.08, rotate: -5 },
   { color: "blush", left: "89%", top: "66%", size: 72, delay: 0.62, duration: 1.28, rotate: 7 },
   { color: "cream", left: "71%", top: "27%", size: 48, delay: 0.76, duration: 1.22, rotate: -3 },
 ];
