@@ -30,7 +30,7 @@ export function useBirthdaySequence() {
   const openLetter = useCallback(() => {
     if (openTimer.current !== null) window.clearTimeout(openTimer.current);
     setPhase("card-open");
-    openTimer.current = window.setTimeout(() => setPhase("card-message"), 850);
+    openTimer.current = window.setTimeout(() => setPhase("card-message"), 520);
   }, []);
 
   const closeLetter = useCallback(() => {

@@ -153,3 +153,14 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
   .repo-cake-svg { filter: none; }
   .letter-backdrop { backdrop-filter: none; }
 }
+
+/* Keep the envelope-to-letter handoff responsive without a heavy animated layer. */
+.envelope-flap { transition-duration: .45s; }
+.envelope-cosmo.is-opening { opacity: .35; animation: none; }
+.envelope-cosmo.is-opening::before,
+.envelope-cosmo.is-opening::after,
+.envelope-cosmo.is-opening i { animation: none; }
+.letter-backdrop { animation-duration: .45s; }
+@media (max-width: 640px) {
+  .envelope-cosmo.is-opening { display: none; }
+}
