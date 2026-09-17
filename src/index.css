@@ -21,8 +21,8 @@ button { font: inherit; }
 .falling-star::after { content: ""; position: absolute; left: 50%; top: 50%; width: 280%; height: 280%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--zodiac-secondary) 70%, transparent), transparent 68%); animation: falling-glow 2.4s ease-in-out var(--fall-delay) infinite; }
 .star-field i { position: absolute; border-radius: 50%; opacity: .46; }
 .star-field i::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: #fff; box-shadow: 0 0 7px rgba(255,255,255,.55); }
-.star-field i.bright-star::before { content: ""; position: absolute; width: 240%; height: 240%; left: -70%; top: -70%; opacity: .75; background: linear-gradient(90deg, transparent 44%, rgba(255,255,255,.9) 50%, transparent 56%), linear-gradient(0deg, transparent 44%, rgba(255,255,255,.9) 50%, transparent 56%); animation: star-ray 3.1s ease-in-out infinite; }
-.star-field i.bright-star::after { box-shadow: 0 0 5px #fff, 0 0 14px var(--zodiac-primary), 0 0 25px color-mix(in srgb, var(--zodiac-secondary) 70%, transparent); animation: twinkle var(--twinkle-duration) ease-in-out var(--delay) infinite; }
+.star-field i.bright-star::before { content: ""; position: absolute; width: 240%; height: 240%; left: -70%; top: -70%; opacity: .68; background: linear-gradient(90deg, transparent 44%, rgba(255,255,255,.9) 50%, transparent 56%), linear-gradient(0deg, transparent 44%, rgba(255,255,255,.9) 50%, transparent 56%); }
+.star-field i.bright-star::after { box-shadow: 0 0 5px #fff, 0 0 14px var(--zodiac-primary), 0 0 25px color-mix(in srgb, var(--zodiac-secondary) 70%, transparent); }
 .balloon-stage { position: absolute; inset: 0; z-index: 8; overflow: hidden; pointer-events: none; }
 .balloon-entry { position: absolute; width: var(--balloon-size); height: calc(var(--balloon-size) * 1.45); transform-origin: 50% 75%; }
 .balloon-shell { position: relative; width: 100%; height: 100%; filter: drop-shadow(0 14px 14px rgba(0,0,0,.25)); animation: balloon-sway 4.8s ease-in-out var(--balloon-delay) infinite; }
