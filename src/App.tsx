@@ -42,10 +42,24 @@ function App() {
 
   const startExperience = useCallback(() => { setBlown(false); setMusicOn(true); musicRef.current?.play(); start(); }, [start]);
   const replay = useCallback(() => { setBlown(false); setMusicOn(true); setTypingKey((key) => key + 1); reset(); window.setTimeout(() => { start(); musicRef.current?.play(); }, 80); }, [reset, start]);
-  const blowCandle = useCallback(() => { setBlown(true); confetti({ particleCount: 70, spread: 62, origin: { x: 0.5, y: 0.56 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] }); }, [sign]);
+  const blowCandle = useCallback(() => {
+    setBlown(true);
+    const compact = window.matchMedia("(max-width: 640px)").matches;
+    confetti({ particleCount: compact ? 24 : 46, spread: compact ? 52 : 62, ticks: compact ? 82 : 118, gravity: 1.15, scalar: compact ? .82 : .92, disableForReducedMotion: true, origin: { x: 0.5, y: 0.56 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] });
+  }, [sign]);
   const toggleMusic = useCallback(() => setMusicOn((value) => !value), []);
 
-  useEffect(() => { if (phase !== "confetti") return; void confetti({ particleCount: 120, angle: 62, spread: 64, origin: { x: 0, y: 0.66 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] }); void confetti({ particleCount: 120, angle: 118, spread: 64, origin: { x: 1, y: 0.66 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] }); }, [phase, sign]);
+  useEffect(() => {
+    if (phase !== "confetti") return;
+    const compact = window.matchMedia("(max-width: 640px)").matches;
+    const options = { ticks: compact ? 86 : 122, gravity: 1.15, scalar: compact ? .78 : .9, disableForReducedMotion: true, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] };
+    if (compact) {
+      void confetti({ ...options, particleCount: 38, spread: 68, origin: { x: 0.5, y: 0.62 } });
+      return;
+    }
+    void confetti({ ...options, particleCount: 70, angle: 62, spread: 58, origin: { x: 0.08, y: 0.66 } });
+    void confetti({ ...options, particleCount: 70, angle: 118, spread: 58, origin: { x: 0.92, y: 0.66 } });
+  }, [phase, sign]);
 
   const letterOpen = ["card-open", "card-message", "complete"].includes(phase);
   const letterFocus = phase === "envelope" || letterOpen;
