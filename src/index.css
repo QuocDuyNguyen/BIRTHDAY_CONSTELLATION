@@ -13,9 +13,9 @@ button { font: inherit; }
 .star-field, .nebula, .zodiac-scene, .cake-scene, .intro-screen, .wish-text, .birthday-title, .envelope-wrap, .card-wrap, .card-backdrop, .scene-label { position: absolute; }
 .star-field { inset: 0; z-index: 1; pointer-events: none; overflow: hidden; perspective: 600px; -webkit-perspective: 600px; }
 .fly-by-layer { position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: #fff; transform-style: preserve-3d; opacity: .5; }
-.fly-layer-one { --parallax-factor: .85; animation: sf-fly-by-1 5s linear infinite; }
-.fly-layer-two { --parallax-factor: .5; animation: sf-fly-by-2 5s linear infinite; }
-.fly-layer-three { --parallax-factor: .25; animation: sf-fly-by-3 5s linear infinite; }
+.fly-layer-one { animation: sf-fly-by-1 5s linear infinite; }
+.fly-layer-two { animation: sf-fly-by-2 5s linear infinite; }
+.fly-layer-three { animation: sf-fly-by-3 5s linear infinite; }
 .falling-stars { position: absolute; inset: 0; overflow: hidden; }
 .falling-star { position: absolute; top: -8%; display: block; border-radius: 50%; background: #fff; opacity: .24; box-shadow: 0 0 5px #fff, 0 0 12px var(--zodiac-primary), 0 0 22px color-mix(in srgb, var(--zodiac-secondary) 78%, transparent); animation: star-fall var(--fall-duration) linear var(--fall-delay) infinite; }
 .falling-star::after { content: ""; position: absolute; left: 50%; top: 50%; width: 280%; height: 280%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--zodiac-secondary) 70%, transparent), transparent 68%); animation: falling-glow 2.4s ease-in-out var(--fall-delay) infinite; }
