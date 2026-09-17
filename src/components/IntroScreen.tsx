@@ -5,7 +5,7 @@ interface IntroScreenProps { onStart: () => void; visible: boolean; }
 
 export function IntroScreen({ onStart, visible }: IntroScreenProps) {
   return (
-    <motion.section className="intro-screen" initial={false} animate={{ opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none", y: visible ? 0 : -130, scale: visible ? 1 : 1.05 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
+    <motion.section className="intro-screen" initial={false} animate={{ opacity: visible ? 1 : 0, pointerEvents: visible ? "auto" : "none", y: visible ? 0 : -130, scale: visible ? 1 : 1.05 }} transition={visible ? { duration: 0.9, ease: [0.22, 1, 0.36, 1] } : { duration: 0 }}>
       <div className="eyebrow"><Sparkles size={14} /> A little cosmic surprise</div>
       <motion.div className="gift-orbit" animate={{ rotate: 360 }} transition={{ duration: 18, repeat: Infinity, ease: "linear" }}>
         <span className="orbit-dot" />
