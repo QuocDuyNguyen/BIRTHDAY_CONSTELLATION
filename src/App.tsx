@@ -45,14 +45,14 @@ function App() {
   const blowCandle = useCallback(() => {
     setBlown(true);
     const compact = window.matchMedia("(max-width: 640px)").matches;
-    confetti({ particleCount: compact ? 8 : 38, spread: compact ? 48 : 60, ticks: compact ? 42 : 98, gravity: 1.2, scalar: compact ? .62 : .88, disableForReducedMotion: true, origin: { x: 0.5, y: 0.56 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] });
+    confetti({ particleCount: compact ? 8 : 38, spread: compact ? 48 : 60, ticks: compact ? 36 : 83, gravity: 1.2, scalar: compact ? .62 : .88, disableForReducedMotion: true, origin: { x: 0.5, y: 0.56 }, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] });
   }, [sign]);
   const toggleMusic = useCallback(() => setMusicOn((value) => !value), []);
 
   useEffect(() => {
     if (phase !== "confetti") return;
     const compact = window.matchMedia("(max-width: 640px)").matches;
-    const options = { ticks: compact ? 42 : 98, gravity: 1.2, scalar: compact ? .62 : .86, disableForReducedMotion: true, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] };
+    const options = { ticks: compact ? 29 : 66, gravity: 1.2, scalar: compact ? .62 : .86, disableForReducedMotion: true, colors: [sign.primaryColor, sign.secondaryColor, "#ffffff"] };
     if (compact) {
       void confetti({ ...options, particleCount: 12, spread: 60, origin: { x: 0.5, y: 0.62 } });
       return;
@@ -63,6 +63,7 @@ function App() {
 
   const letterOpen = ["card-open", "card-message", "complete"].includes(phase) && !blown;
   const letterFocus = phase === "envelope" || letterOpen;
+  const showBirthdayTitle = ["birthday-title", "zodiac", "wish", "confetti", "card-transition", "envelope", "card-open", "card-message", "complete"].includes(phase);
   return (
     <main className={`app-shell element-${sign.element} theme-${birthdayData.cakeTheme}`} style={{ "--zodiac-primary": sign.primaryColor, "--zodiac-secondary": sign.secondaryColor } as React.CSSProperties}>
       <StarField />
@@ -71,12 +72,12 @@ function App() {
       <div className="scene-label">BIRTHDAY CONSTELLATION <span>✦</span></div>
       {started && <>
         <ZodiacScene phase={phase} sign={sign} dimmed={letterOpen} />
-        <Cake phase={phase} theme={birthdayData.cakeTheme} blown={blown} />
+        <Cake phase={phase} sign={sign} blown={blown} />
         <Balloons visible={blown} paused={letterOpen} />
         {blown && <div className="zodiac-celebration-message" role="status"><span>{sign.symbol} {sign.name}</span><strong>{sign.shortMessage}</strong></div>}
         <div className="wish-text" aria-live="polite">{phase === "wish" && "Make a wish ✨"}</div>
-        <div className={`birthday-title ${letterOpen ? "scene-in-background" : ""}`} aria-live="polite">
-          {["birthday-title", "card-transition", "envelope", "card-open", "card-message", "complete"].includes(phase) && <><span>HAPPY BIRTHDAY</span><strong>{birthdayData.receiverName}</strong></>}
+        <div className={`birthday-title ${showBirthdayTitle ? "is-visible" : ""} ${letterOpen ? "scene-in-background" : ""}`} aria-live="polite">
+          {showBirthdayTitle && <><span>HAPPY BIRTHDAY</span><strong>{birthdayData.receiverName}</strong></>}
         </div>
         {letterFocus && <div className="letter-backdrop" aria-hidden="true" />}
         <Envelope phase={phase} onOpen={openLetter} />

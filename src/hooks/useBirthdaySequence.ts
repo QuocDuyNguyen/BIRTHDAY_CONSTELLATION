@@ -4,8 +4,9 @@ export type BirthdayPhase = "intro" | "cake-layer-1" | "cake-layer-2" | "cake-la
 
 const timeline: Array<[BirthdayPhase, number]> = [
   ["cake-layer-1", 350], ["cake-layer-2", 1050], ["cake-layer-3", 1750], ["cake-decoration", 2400],
-  ["zodiac", 3000], ["candle", 4650], ["flame", 5200], ["wish", 5750], ["confetti", 6900],
-  ["birthday-title", 7000], ["card-transition", 8550], ["envelope", 9300],
+  ["candle", 3300], ["flame", 4300], ["birthday-title", 5000], ["zodiac", 5400],
+  ["wish", 11100], ["confetti", 11240],
+  ["card-transition", 12200], ["envelope", 13000],
 ];
 
 export function useBirthdaySequence() {
@@ -30,7 +31,7 @@ export function useBirthdaySequence() {
   const openLetter = useCallback(() => {
     if (openTimer.current !== null) window.clearTimeout(openTimer.current);
     setPhase("card-open");
-    openTimer.current = window.setTimeout(() => setPhase("card-message"), 300);
+    openTimer.current = window.setTimeout(() => setPhase("card-message"), 255);
   }, []);
 
   const closeLetter = useCallback(() => {

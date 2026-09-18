@@ -1,27 +1,35 @@
 import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
 import type { BirthdayPhase } from "../hooks/useBirthdaySequence";
-import type { CakeTheme } from "../types";
+import type { ZodiacSign } from "../types";
 
 interface CakeProps {
   phase: BirthdayPhase;
-  theme: CakeTheme;
+  sign: ZodiacSign;
   blown: boolean;
 }
 
 const phaseOrder: BirthdayPhase[] = [
   "intro", "cake-layer-1", "cake-layer-2", "cake-layer-3", "cake-decoration",
-  "zodiac", "candle", "flame", "wish", "confetti", "birthday-title",
+  "candle", "flame", "birthday-title", "zodiac", "wish", "confetti",
   "card-transition", "envelope", "card-open", "card-message", "complete",
 ];
 
 const reached = (phase: BirthdayPhase, target: BirthdayPhase) => phaseOrder.indexOf(phase) >= phaseOrder.indexOf(target);
 
-export function Cake({ phase, theme, blown }: CakeProps) {
-  const body = theme === "chocolate" ? "#8a5b4b" : theme === "vanilla" ? "#e7cda8" : "#e79ab9";
-  const bodyDark = theme === "chocolate" ? "#624036" : theme === "vanilla" ? "#c29b70" : "#c86f9e";
-  const icing = theme === "chocolate" ? "#f4c7a8" : theme === "vanilla" ? "#fff3dd" : "#fff0f6";
-  const accent = theme === "chocolate" ? "#d89d6d" : theme === "vanilla" ? "#f1bd7f" : "#f7c5dc";
+function mixHex(color: string, target: string, amount: number) {
+  const source = color.replace("#", "");
+  const destination = target.replace("#", "");
+  const channel = (value: string, index: number) => Number.parseInt(value.slice(index, index + 2), 16);
+  const mix = (index: number) => Math.round(channel(source, index) + (channel(destination, index) - channel(source, index)) * amount).toString(16).padStart(2, "0");
+  return `#${mix(0)}${mix(2)}${mix(4)}`;
+}
+
+export function Cake({ phase, sign, blown }: CakeProps) {
+  const body = mixHex(sign.primaryColor, "#ffffff", .24);
+  const bodyDark = mixHex(sign.primaryColor, "#241329", .3);
+  const icing = mixHex(sign.secondaryColor, "#ffffff", .52);
+  const accent = sign.secondaryColor;
   const svgStyle = { "--repo-cake-body": body, "--repo-cake-dark": bodyDark, "--repo-cake-icing": icing, "--repo-cake-accent": accent } as CSSProperties;
   const cardIsOpen = ["card-open", "card-message", "complete"].includes(phase) && !blown;
 
