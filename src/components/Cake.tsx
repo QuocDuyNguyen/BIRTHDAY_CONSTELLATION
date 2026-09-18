@@ -62,7 +62,7 @@ export function Cake({ phase, theme, blown }: CakeProps) {
         <circle cx="78" cy="153" r="3.5" fill="var(--repo-cake-accent)" /><circle cx="163" cy="153" r="3.5" fill="var(--repo-cake-accent)" />
       </g>
 
-      <g className={`cake-candle-motion ${reached(phase, "candle") ? "is-visible" : ""}`}>
+      <g className={`cake-candle-motion ${reached(phase, "candle") ? "is-visible" : ""} ${blown ? "is-blown" : ""}`}>
         <rect x="113" y="107" width="14" height="58" rx="6" fill="var(--zodiac-primary)" />
         <path d="M114 121 H126 M114 135 H126 M114 149 H126" stroke="rgba(255,255,255,.72)" strokeWidth="4" />
         <motion.g className="candle-flame" animate={blown ? { opacity: 0, scale: .1, y: 15 } : reached(phase, "flame") ? { opacity: 1, scale: [1, 1.13, .9, 1], rotate: [-4, 5, -3, 0] } : { opacity: 0, scale: .1 }} transition={blown ? { duration: .4 } : { duration: 1.05, repeat: Infinity, ease: "easeInOut" }}>
