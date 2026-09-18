@@ -52,9 +52,9 @@ button { font: inherit; }
 .scene-label span { color: var(--zodiac-primary); margin-left: 9px; }
 .intro-screen { z-index: 20; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
 .eyebrow { display: flex; gap: 7px; align-items: center; color: var(--zodiac-secondary); font-family: "DM Mono", monospace; text-transform: uppercase; letter-spacing: .13em; font-size: 10px; }
-.gift-orbit { position: absolute; width: min(60vw, 370px); aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--zodiac-primary) 30%, transparent); border-radius: 50%; opacity: .5; }
+.gift-orbit { position: absolute; width: min(60vw, 370px); aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--zodiac-primary) 30%, transparent); border-radius: 50%; opacity: .5; pointer-events: none; }
 .orbit-dot { position: absolute; width: 8px; height: 8px; border-radius: 50%; top: -4px; left: 50%; background: var(--zodiac-primary); box-shadow: 0 0 20px var(--zodiac-primary); }
-.gift-icon { margin: 38px 0 24px; color: var(--zodiac-secondary); filter: drop-shadow(0 0 24px color-mix(in srgb, var(--zodiac-primary) 65%, transparent)); }
+.gift-icon { margin: 38px 0 24px; color: var(--zodiac-secondary); filter: drop-shadow(0 0 24px color-mix(in srgb, var(--zodiac-primary) 65%, transparent)); pointer-events: none; }
 .intro-kicker { margin: 0 0 15px; color: rgba(255,255,255,.66); font-family: "DM Mono", monospace; font-size: 12px; }
 h1 { margin: 0; font-size: clamp(32px, 6vw, 70px); line-height: 1.05; letter-spacing: -.06em; font-weight: 700; }
 h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; font-weight: 500; letter-spacing: -.04em; }
