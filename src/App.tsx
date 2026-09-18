@@ -29,7 +29,7 @@ function App() {
     return () => { music.stop(); music.unload(); musicRef.current = null; };
   }, []);
 
-  const cardVisible = ["card-message", "complete"].includes(phase);
+  const cardVisible = ["card-message", "complete"].includes(phase) && !blown;
   useEffect(() => {
     const music = musicRef.current;
     if (!music) return;
@@ -61,7 +61,7 @@ function App() {
     void confetti({ ...options, particleCount: 55, angle: 118, spread: 56, origin: { x: 0.92, y: 0.66 } });
   }, [phase, sign]);
 
-  const letterOpen = ["card-open", "card-message", "complete"].includes(phase);
+  const letterOpen = ["card-open", "card-message", "complete"].includes(phase) && !blown;
   const letterFocus = phase === "envelope" || letterOpen;
   return (
     <main className={`app-shell element-${sign.element} theme-${birthdayData.cakeTheme}`} style={{ "--zodiac-primary": sign.primaryColor, "--zodiac-secondary": sign.secondaryColor } as React.CSSProperties}>
@@ -73,6 +73,7 @@ function App() {
         <ZodiacScene phase={phase} sign={sign} dimmed={letterOpen} />
         <Cake phase={phase} theme={birthdayData.cakeTheme} blown={blown} />
         <Balloons visible={blown} paused={letterOpen} />
+        {blown && <div className="zodiac-celebration-message" role="status"><span>{sign.symbol} {sign.name}</span><strong>{sign.shortMessage}</strong></div>}
         <div className="wish-text" aria-live="polite">{phase === "wish" && "Make a wish ✨"}</div>
         <div className={`birthday-title ${letterOpen ? "scene-in-background" : ""}`} aria-live="polite">
           {["birthday-title", "card-transition", "envelope", "card-open", "card-message", "complete"].includes(phase) && <><span>HAPPY BIRTHDAY</span><strong>{birthdayData.receiverName}</strong></>}

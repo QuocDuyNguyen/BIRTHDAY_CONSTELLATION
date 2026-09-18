@@ -143,6 +143,9 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
 .birthday-card h2 { margin-bottom: 16px; }
 .birthday-card { overflow-x: hidden; scrollbar-width: none; }
 .birthday-card::-webkit-scrollbar { width: 0; height: 0; display: none; }
+.zodiac-celebration-message { position: absolute; z-index: 8; left: 50%; top: 50%; translate: -50% -50%; width: min(82vw, 560px); padding: 24px 28px; text-align: center; border: 1px solid color-mix(in srgb, var(--zodiac-secondary) 42%, transparent); border-radius: 22px; background: linear-gradient(145deg, color-mix(in srgb, var(--zodiac-primary) 25%, #271733), #150d24); box-shadow: 0 20px 60px rgba(0,0,0,.38), 0 0 34px color-mix(in srgb, var(--zodiac-primary) 24%, transparent); animation: zodiac-message-in .65s cubic-bezier(.22,1,.36,1) both; }
+.zodiac-celebration-message span { display: block; margin-bottom: 10px; color: var(--zodiac-secondary); font: 10px "DM Mono", monospace; letter-spacing: .16em; text-transform: uppercase; }
+.zodiac-celebration-message strong { display: block; color: #fff4f0; font: italic 500 clamp(20px, 3.4vw, 30px) "Playfair Display", serif; line-height: 1.35; }
 @media (prefers-reduced-motion: reduce) {
   /* Keep the birthday interaction visible; reduce only background motion. */
   .shooting-stars span,
@@ -177,6 +180,7 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
 .card-wrap { will-change: transform, opacity; }
 .card-glow { inset: -4%; filter: none; opacity: .7; background: radial-gradient(circle, color-mix(in srgb, var(--zodiac-primary) 20%, transparent), transparent 72%); }
 .letter-backdrop { background: radial-gradient(circle at 50% 50%, rgba(38,23,51,.22) 0 150px, rgba(5,3,14,.92) 330px), #05030e; }
+@keyframes zodiac-message-in { from { opacity: 0; transform: translateY(16px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 /* Keep the envelope-to-letter handoff responsive without a heavy animated layer. */
 .envelope-flap { transition-duration: .45s; }
@@ -187,4 +191,5 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
 .letter-backdrop { animation-duration: .45s; }
 @media (max-width: 640px) {
   .envelope-cosmo.is-opening { display: none; }
+  .zodiac-celebration-message { top: 48%; width: min(84vw, 420px); padding: 20px 18px; }
 }

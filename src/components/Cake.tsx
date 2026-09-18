@@ -23,7 +23,7 @@ export function Cake({ phase, theme, blown }: CakeProps) {
   const icing = theme === "chocolate" ? "#f4c7a8" : theme === "vanilla" ? "#fff3dd" : "#fff0f6";
   const accent = theme === "chocolate" ? "#d89d6d" : theme === "vanilla" ? "#f1bd7f" : "#f7c5dc";
   const svgStyle = { "--repo-cake-body": body, "--repo-cake-dark": bodyDark, "--repo-cake-icing": icing, "--repo-cake-accent": accent } as CSSProperties;
-  const cardIsOpen = ["card-open", "card-message", "complete"].includes(phase);
+  const cardIsOpen = ["card-open", "card-message", "complete"].includes(phase) && !blown;
 
   return <motion.div className={`cake-scene ${cardIsOpen ? "is-background" : ""}`} animate={{ opacity: cardIsOpen ? 0.18 : 1, scale: cardIsOpen ? 0.94 : 1 }} transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}>
     <div className="cake-halo" />
