@@ -143,7 +143,13 @@ h1 em { color: var(--zodiac-secondary); font-family: "Playfair Display", serif; 
 .birthday-card h2 { margin-bottom: 16px; }
 .birthday-card { overflow-x: hidden; scrollbar-width: none; }
 .birthday-card::-webkit-scrollbar { width: 0; height: 0; display: none; }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the birthday interaction visible; reduce only background motion. */
+  .shooting-stars span,
+  .falling-stars,
+  .fly-by-layer,
+  .nebula { display: none !important; }
+}
 @media (max-width: 640px) {
   .fly-by-layer { display: none; }
   .star-field i.bright-star::before { display: none; }
