@@ -11,7 +11,7 @@ export const birthdayData: BirthdayData = {
   music: "https://res.cloudinary.com/ly6xwuwk/video/upload/v1789654659/Music_ffj3yg.mp3",
   card: {
     title: "Happy Birthday",
-    paragraphs: ["Kiêu lên Slay lên xinh, tươi như z tự tin lên!!!"],
+    paragraphs: ["Kiêu lên Slay lên, xinh tươi như z tự tin lên!!!"],
     closing: "Tuổi mới thật rực rỡ ✨",
   },
 };
