@@ -5,13 +5,13 @@ import type { BirthdayData } from "../types";
  * Tuổi mặc định được tính bằng năm hiện tại trừ năm sinh.
  */
 export const birthdayData: BirthdayData = {
-  receiverName: "Hồng Ngọc",
-  birthDate: "2005-09-16",
+  receiverName: "Mỹ Phụng",
+  birthDate: "2003-10-29",
   cakeTheme: "strawberry",
   music: "https://res.cloudinary.com/ly6xwuwk/video/upload/v1789654659/Music_ffj3yg.mp3",
   card: {
     title: "Happy Birthday",
-    paragraphs: ["Làm web xong tự nhiên hết văn r bạn ơi =)))"],
+    paragraphs: ["Kiêu lên Slay lên xinh, tươi như z tự tin lên!!!"],
     closing: "Tuổi mới thật rực rỡ ✨",
   },
 };
